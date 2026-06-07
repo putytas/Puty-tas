@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Únete a nuestro Discord</title>
+  <style>
+    body {
+      background: #1a1a2e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: sans-serif;
+      color: white;
+    }
+    h1 { margin-bottom: 20px; }
+    .invite-btn {
+      margin-top: 20px;
+      padding: 12px 28px;
+      background: #5865F2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .invite-btn:hover { background: #4752c4; }
+  </style>
+</head>
+<body>
+  <h1>🎮 Únete a nuestro servidor</h1>
+
+  <iframe 
+    src="https://discord.com/widget?id=1512211018473017484&theme=dark" 
+    width="350" 
+    height="500" 
+    allowtransparency="true" 
+    frameborder="0" 
+    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+  </iframe>
+
+  <a class="invite-btn" id="invite-link" href="#" target="_blank">
+    ➕ Unirse al servidor
+  </a>
+
+  <script>
+    // Obtiene el link de invitación automáticamente desde la API
+    fetch('https://discord.com/api/guilds/1512211018473017484/widget.json')
+      .then(res => res.json())
+      .then(data => {
+        if (data.instant_invite) {
+          document.getElementById('invite-link').href = data.instant_invite;
+        }
+      });
+  </script>
+</body>
+</html>
